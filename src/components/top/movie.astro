@@ -1,0 +1,155 @@
+---
+const movies = [
+	{ url: "W6Kn0Ejp64A", title: "男性器専用：性器の性病検査【尿検査】" },
+	{ url: "AsN-LSvMHjk", title: "男女共通：のどの性病検査方法【うがい液検査】" },
+	{ url: "adV1lh_PHO0", title: "女性器専用：性器の性病検査方法【膣ぬぐい検査】" },
+    { url: "AfHPgQrCSXA", title: "男女共通：血液での性病検査方法【血液検査】" },
+];
+---
+<section id="movie" class="p-lp_movie">
+    <div class="p-lp_movie_head">
+        <h2 class="p-lp_movie_head_ttl">検査手順解説動画</h2>
+        <span class="p-lp_movie_head_spell -bahnschrift">MOVIE</span>
+    </div>
+    <div class="p-lp_movie_list">
+        {
+            movies.map((movie) => (
+                <div class="p-lp_movie_list_item">
+                    <div class="p-lp_movie_list_card js-movie-card">
+                        <img class="p-lp_movie_list_card_img" src={`https://img.youtube.com/vi/${movie.url}/hqdefault.jpg`} alt="" width="" height="" />
+                        <div class="p-lp_movie_list_card_ttl">{movie.title}</div>
+                    </div>
+                    <div class="p-lp_movie_list_modal js-modal-target">
+                        <iframe class="p-lp_movie_list_modal_iframe" src="" data-youtube={`https://www.youtube.com/embed/${movie.url}?rel=0&autoplay=1`} title={movie.title} class="l-movie_card_iframe" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowfullscreen />
+                        <div class="p-lp_movie_list_modal_ttl">{movie.title}</div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+    <!-- <div class="p-lp_movie_bnr">
+        <a href="https://mycare.or.jp/online/" target="_blank" class="p-lp_movie_bnr_link">
+            <img class="p-lp_movie_bnr_img" src="/img/lp/p-lp_movie_bnr.png" alt="自宅で簡単オンライン診療|性病の陽性時の薬処方|ピル処方" width="750" height="523" />
+        </a>
+    </div> -->
+</section>
+
+<script>
+$(document).ready(function() {
+    $(".js-movie-card").on("click",function(){
+        $(".l-modal").addClass("-active");
+        let modalClone = $(this).next(".js-modal-target").clone();
+        $(".l-modal_content").append(modalClone);
+        let iframe = $(".l-modal_content").find("iframe");
+        // iframe の data-youtube 属性の値を取得
+        let dataYoutube = iframe.data("youtube");
+        // iframe の src 属性に data-youtube の値を追記
+        iframe.attr("src", iframe.attr("src") + dataYoutube);
+    });
+});
+</script>
+
+<style lang="scss">
+.p-lp_movie{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 20px;
+    &_head{
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        text-align: center;
+        color: var(--color-04);
+        &_ttl{
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+        &_spell{
+            font-size: 3rem;
+            font-weight: 600;
+            border-bottom: solid 3px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+    }
+    &_list{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &_item{}
+        &_card{
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px 10px 14px;
+            border: solid 1px #f0f0f0;
+            box-shadow: 0px 1px 5px -1px rgb(0 0 0 / 10%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            &::before{
+                content: "";
+                z-index: 1;
+                background-color: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(6px);
+                border: solid 4px #fff;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M19.376 12.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z' fill='rgba(24,161,231,1)'/%3E%3C/svg%3E");
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 3rem;
+                top: calc(50% - 50px);
+                left: calc(50% - 30px);
+            }
+            &_img{
+                width: 100%;
+                aspect-ratio: 17/9.5;
+                object-fit: cover;
+                // &:before{
+                //     content: "";
+                //     z-index: 1;
+                //     background-color: rgba(255, 255, 255, 0.8);
+                //     backdrop-filter: blur(6px);
+                //     border: solid 4px #fff;
+                //     position: absolute;
+                //     width: 52px;
+                //     height: 52px;
+                //     border-radius: 50%;
+                //     background-repeat: no-repeat;
+                //     background-position: center;
+                //     background-size: 2.5rem;
+                //     top: calc(50% - 30px);
+                //     left: calc(50% - 30px);
+                // }
+            }
+            &_ttl{
+                font-weight:600;
+            }
+        }
+        &_modal{
+            display: none;
+            &_iframe{
+                width:100%;
+                aspect-ratio: 17/9.6;
+            }
+            &_ttl{
+                font-weight: 600;
+                padding: 10px 0 0;
+            }
+        }
+    }
+    &_bnr{
+        &_link{}
+        &_img{
+            width:100%;
+            height:auto;
+            object-fit:contain;
+        }
+    }
+}
+</style>

@@ -1,0 +1,196 @@
+---
+const { post, siteUrl } = Astro.props;
+// カテゴリー重複削除
+const categoryArr = post.custom_fields._InspectionItem;
+const cateArr = [];
+categoryArr.forEach((element) => {
+	cateArr.push(String(element).replace(/（.*?）/g, ""));
+});
+const categorys = [...new Set(cateArr)];
+---
+
+<a href={post.custom_fields._stripe[0]} class="p-postalPrice_block" data-category={categorys} data-gender={post.custom_fields._gender == "female" ? "女性" : post.custom_fields._gender == "male" ? "男性" : "共通"}>
+	<span class={`-${post.custom_fields._gender == "female" ? "female" : post.custom_fields._gender == "male" ? "male" : "common"} p-postalPrice_block_badge`}>{post.custom_fields._subheadings}</span>
+	<dl class={`p-postalPrice_block_dl -${post.custom_fields._bundleFlag}`}>
+		<dt class="p-postalPrice_block_dl_dt">
+			{post.title}<br />
+			<span class="p-postalPrice_block_dl_dt_sub">【{post.custom_fields._gender == "female" ? "女性" : post.custom_fields._gender == "male" ? "男性" : "男女共"}用】</span>
+			<span class="p-postalPrice_block_dl_dt_pink">{post.custom_fields._postage.toLocaleString()}円</span>
+		</dt>
+		{/* 単品メニューの場合だけ表示 */}
+		{
+			post.custom_fields._bundleFlag == "single" ? (
+				<dd class="p-postalPrice_block_dl_dd_single">
+					<p>
+						単品
+						<br />
+						メニュー
+					</p>
+				</dd>
+			) : null
+		}
+		<dd class="p-postalPrice_block_dl_dd" set:html={post.custom_fields._headline} />
+		<dd class={`-${post.custom_fields._gender == "female" ? "female" : post.custom_fields._gender == "male" ? "male" : "common"} p-postalPrice_block_dl_dd_badge`}>
+			<img src={`/img/lp/${post.custom_fields._gender == "female" ? "female" : post.custom_fields._gender == "male" ? "male" : "common"}-icon.png`} alt="アイコンマーク" class="p-postalPrice_block_dl_dd_badge_img" width="47" height="47" />
+			{post.custom_fields._gender == "female" ? "女性" : post.custom_fields._gender == "male" ? "男性" : "男女共"}用
+		</dd>
+		{
+			post.custom_fields._bundleFlag == "set" ? (
+				<dd class="p-postalPrice_block_dd">
+					<dl class="p-postalPrice_block_dd_list_dl">
+						<dt class="p-postalPrice_block_dd_list_dt">検査項目</dt>
+						<dd class="p-postalPrice_block_dd_list_dd">{post.custom_fields._InspectionItem.join("、")}</dd>
+					</dl>
+				</dd>
+			) : null
+		}
+	</dl>
+	<div class="p-postalPrice_block_btm">
+		<ul class="p-postalPrice_block_btm_list">
+			<li class="p-postalPrice_block_btm_list_item">検査項目：{post.custom_fields._InspectionItem.length}項目</li>
+			<li class="p-postalPrice_block_btm_list_item">検査方法：{post.custom_fields._InspectionMethod}</li>
+		</ul>
+	</div>
+</a>
+
+<style lang="scss" is:global>
+.p-postalPrice_block {
+    text-decoration: none;
+    border: solid 2px var(--color-04);
+    box-shadow: 0px 1px 5px -1px rgba(0,0,0,0.15);
+    position: relative;
+    &_badge:not(:empty){
+        background-color: #333;
+        color: #fff;
+        padding: 8px 20px 6px;
+        position: absolute;
+        font-size: .8rem;
+        top: -16px;
+        left: -2px;
+        &.-male{
+            background-color: #30c1db;
+        }
+        &.-female{
+            background-color: #ff7cb0;
+        }
+    }
+    &_dl{
+        color: var(--body-color);
+        padding: 18px 20px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &_dt{
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.25;
+            font-feature-settings: "palt";
+            letter-spacing: 1px;
+            width: calc(100% - 3.5rem);
+            &_sub{
+                font-size: .85rem;
+                font-feature-settings: "palt";
+                margin-right: 5px;
+            }
+            &_pink{
+                color: var(--color-02);
+            }
+        }
+        &_dd{
+            font-size: .85rem;
+            line-height: 1.45;
+            color: var(--color-08);
+            font-feature-settings: "palt";
+            letter-spacing: 1px;
+            &_badge{
+                position: absolute;
+                top: 16px;
+                right: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                font-size: .75rem;
+                font-weight: 600;
+                img{
+                    height: 1.5rem;
+                    width: auto;
+                    object-fit: contain;
+                }
+            }
+        }
+        &.-single{
+            flex-direction: initial;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px 15px;
+            .p-postalPrice_block_dl_dt{
+                order: 2;
+                width: calc(100% - 8rem);
+                font-size: 1.1rem;
+            }
+            .p-postalPrice_block_dl_dd_single{
+                order: 1;
+                display: flex;
+                border: solid 2px;
+                color: var(--color-02);
+                font-size: .75rem;
+                font-feature-settings: "palt";
+                line-height: 1.25;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            .p-postalPrice_block_dl_dd{
+                order: 3;
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 100%;
+            }
+        }
+    }
+    &_dd{
+        border-top: solid 1px #ddd;
+        padding: 10px 0 0;
+        &_list{
+            &_dl{
+                display: flex;
+                gap: 10px;
+                align-items: baseline;
+            }
+            &_dt{
+                flex: 0 0 auto;
+                font-size: .85rem;
+                font-weight: 600;
+                color: var(--color-08);
+            }
+            &_dd{
+                font-feature-settings: "palt";
+                letter-spacing: 1px;
+                font-size: .85rem;
+                line-height: 1.35;
+                color: var(--body-color);
+            }
+        }
+    }
+    &_btm{
+        background-color: #f0f0f0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z' fill='rgba(50,152,219,1)'/%3E%3C/svg%3E");
+        background-size: 2rem;
+        background-repeat: no-repeat;
+        background-position: center right 10px;
+        &_list{
+            display: flex;
+            flex-direction: column;
+            padding: 15px 20px;
+            gap: 8px;
+            &_item{
+                color: var(--color-08);
+                font-weight: 600;
+                font-size: .85rem;
+            }
+        }
+    }
+}
+</style>

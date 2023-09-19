@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+const siteUrl = import.meta.env.PUBLIC_URL;
+---
+
+<Layout title="決済完了">
+	<meta slot="description" name="description" content="郵送性病検査の決済が完了しました" />
+	<link slot="canonical" rel="canonical" href={`${siteUrl}/thanks`} />
+	<main>
+        <div class="l-headline">
+            <h1 class="l-headline_ttl">決済完了</h1>
+        </div>
+        <section class="l-section">
+            <p class="c-txt">
+				ご購入いただき、まことにありがとうございます。<br>
+				なお、発送は午前12時までのご注文で本日行いますので、お品物の到着まで、しばらくお待ちください。<br>
+			</p>
+			<p class="c-txt">
+				万が一、商品が1週間以上経過しても届かない場合は、下記連絡先までお問い合わせくださいますようお願いいたします。<br>
+				株式会社高精度検査会&nbsp;<a href="tel:0362738653" onclick="gtag('event', 'click' , {'event_category': 'tel_tap' ,'event_label': 'postal_thanks' });"><span>TEL:</span>03-6273-8653</a>
+			</p>
+        </section>
+    </main>
+</Layout>

@@ -1,0 +1,321 @@
+---
+import PostalBlock from "../../components/parts/PostalPriceBlock.astro";
+
+const apiUrl = import.meta.env.PUBLIC_API_URL;
+export type Post = {
+	useId: number;
+	id: number;
+	title: string;
+	body: string;
+	custom_fields: {
+		_menu_postage: number;
+	};
+};
+const response = await fetch(apiUrl);
+const responseData = await response.json();
+const posts: Post[] = responseData.data;
+---
+<section id="menu" class="p-lp_menu">
+    <div class="p-lp_menu_head">
+        <h2 class="p-lp_menu_head_ttl">検査メニュー</h2>
+    </div>
+    <div class="p-lp_menu_sort">
+        <div class="p-lp_menu_sort_ttl">絞り込み</div>
+        <div class="p-lp_menu_sort_nav">
+            <button class="p-lp_menu_sort_nav_btn js-sort-menu -active" data-gender="共通">全商品</button>
+            <button class="p-lp_menu_sort_nav_btn js-sort-menu" data-gender="男性">男性用</button>
+            <button class="p-lp_menu_sort_nav_btn js-sort-menu" data-gender="女性">女性用</button>
+        </div>
+        <div class="p-lp_menu_sort_list">
+            <div class="p-lp_menu_sort_list_head">
+                <span class="p-lp_menu_sort_list_head_ttl">検査項目で絞り込む</span>
+            </div>
+            <div class="p-lp_menu_sort_list_content">
+                <span class="p-lp_menu_sort_list_notes">検査項目（複数選択可）</span>
+                <div class="p-lp_menu_sort_list_elm">
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="クラミジア">クラミジア</div>
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="淋菌">淋菌</div>
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="トリコモナス">トリコモナス</div>
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="HIV">HIV</div>
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="梅毒">梅毒</div>
+                    <div class="p-lp_menu_sort_list_item js-sort-tag" data-tag="B型肝炎">B型肝炎</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-lp_menu_notes">
+        <p class="c-txt -small">※一度のご注文で1メニューのみ購入可能です<br>複数メニューをご希望の際は、都度決済が必要となります<br>月経中（生理期間）の場合は検査ができないため、ご注意ください<br>※メディカルポストは<span class="c-accent">医療法人社団胡蝶会（新宿駅前婦人科クリニック）</span>が運営しているオンライン診療サービスです。</p>
+    </div>
+    <div class="p-lp_menu_list">
+        {
+            posts.map((post) => (
+                <>
+                    <PostalBlock post={post} />
+                </>
+            ))
+        }
+    </div>
+</section>
+
+<script>
+$(document).ready(function() {
+    var selectedGender = "共通";
+    var selectedCategories = [];
+
+    // アイテムをフィルタリングする関数
+    function filterItems() {
+        $('.p-postalPrice_block').fadeOut('fast'); // 一度全てフェードアウト
+        $('.p-postalPrice_block').each(function() {
+            var gender = $(this).data('gender');
+            var categories = $(this).data('category');
+
+            if (categories) {
+                categories = categories.split(',');
+            } else {
+                categories = [];
+            }
+            // "共通"が選択された場合、すべての性別を表示
+            // "男性"か"女性"が選択された場合、"共通"と選択された性別を表示
+            if (selectedGender === "共通" || gender === "共通" || selectedGender === gender) {
+                // No-op
+            } else {
+                return;
+            }
+
+            // 選択されたカテゴリがすべて含まれている場合に表示
+            if (selectedCategories.length > 0 && !selectedCategories.every(cat => categories.includes(cat))) return;
+
+            $(this).fadeIn('fast'); // 該当する要素をフェードイン
+        });
+    }
+    // 性別メニューのクリックイベント
+    $('.js-sort-menu').click(function() {
+        var gender = $(this).data('gender');
+        if (selectedGender === gender) {
+            selectedGender = null;// すでに選択されている場合、選択を解除
+            $(this).removeClass('-active');
+        } else {
+            $('.js-sort-menu').removeClass('-active');
+            $(this).addClass('-active');
+            selectedGender = gender;
+        }
+        filterItems();// アイテムをフィルタリング
+    });
+
+    $('.js-sort-tag').click(function() {
+        var category = $(this).data('tag');
+        if (selectedCategories.includes(category)) {
+            selectedCategories = selectedCategories.filter(cat => cat !== category);
+            $(this).removeClass('-active');
+        } else {
+            $(this).addClass('-active');
+            selectedCategories.push(category);// 新しいカテゴリを選択
+        }
+        filterItems();// アイテムをフィルタリング
+    });
+
+    // filterItems();
+
+    // パラメータで施術メニューを変更する
+    let params = new URLSearchParams(window.location.search);
+    let job = params.get('job');
+    let buy = params.get('buy');
+    let dataArray = [];
+    if (job) {
+        let apiUrlPath = job === "host" ? "/cms/?rest_route=/custom_api/v1/host_menu" : job === "nightwork" ? "/cms/?rest_route=/custom_api/v1/host_menu" : "";
+        // let apiUrl = location.origin + apiUrlPath;
+        let apiUrl = "https://mycare.or.jp" + apiUrlPath;
+        $.when(
+            fetch(apiUrl) // ここにAPIのURLを指定します
+                .then((response) => response.json()) // レスポンスをJSONとして解析
+                .then((data) => {
+                    dataArray = data.data; // データを配列に格納
+                })
+                .catch((error) => console.error("Error:", error)) // エラーハンドリング
+        ).done(function() {
+            postalItemAdd(dataArray);
+        });
+    }
+    if(buy){
+        let fuzokuData = buy === "first_time" ? "/first_time.json" : buy === "second_time" ? "/second_time.json" : "";
+        $.when(
+            $.getJSON(fuzokuData, function(data) {
+                dataArray = data.data;
+            }).fail(function(jqxhr, textStatus, error) {
+                console.error("Error: " + textStatus + ", " + error);
+            })
+        ).done(function() {
+            // console.log(dataArray);
+            postalItemAdd(dataArray);
+        });
+    }
+    /**
+     * 括弧とその中身を削除して重複を削除する関数
+     * @param {*} array
+     */
+    function removeBrackets(array) {
+        const regex = /（[^（）]*）/g; // 括弧とその中身を含む正規表現パターン
+        const resultArray = array.map((item) => item.replace(regex, "")); // 各要素に対して正規表現にマッチする部分を削除
+        const uniqueArray = Array.from(new Set(resultArray)); // Setオブジェクトを使用して重複を削除し、新しい配列を作成
+        return uniqueArray;
+    }
+    function postalItemAdd(dataArray){
+        $(".p-lp_menu_list").empty();
+        let menuHTML = dataArray.map(item => {
+            let title = item["title"];
+            let stripe = item["custom_fields"]["_stripe"];
+            let headline = item["custom_fields"]["_headline"];
+            let price = new Intl.NumberFormat().format(item["custom_fields"]["_price"]);
+            let postage = new Intl.NumberFormat().format(item["custom_fields"]["_postage"]);
+            let InspectionItem = item["custom_fields"]["_InspectionItem"];
+            let items = removeBrackets(InspectionItem);
+            let InspectionMethod = item["custom_fields"]["_InspectionMethod"];
+            // let InspectionResults = item["custom_fields"]["_InspectionResults"];
+            let subheadings = item["custom_fields"]["_subheadings"];
+            let gender = item["custom_fields"]["_gender"];
+            let gender_jp = gender == "male" ? "男性" : gender == "female" ? "女性" : "男女共用";
+            return `<a href="${stripe}" class="p-postalPrice_block" data-category="${items}" data-gender="${gender_jp}">
+                <span class="-${gender} p-postalPrice_block_badge">${subheadings}</span>
+                <dl class="p-postalPrice_block_dl -set">
+                    <dt class="p-postalPrice_block_dl_dt">${title}<br class=">
+                        <span class="p-postalPrice_block_dl_dt_sub">【${gender_jp}用】</span>
+                        <span class="p-postalPrice_block_dl_dt_pink">${postage}円</span>
+                    </dt>
+                    <dd class="p-postalPrice_block_dl_dd">${headline}</dd>
+                    <dd class="-${gender} p-postalPrice_block_dl_dd_badge">
+                        <img src="/img/lp/${gender}-icon.png" alt="アイコンマーク" class="p-postalPrice_block_dl_dd_badge_img" width="47" height="47" />
+                        ${gender_jp}用
+                    </dd>
+                    <dd class="p-postalPrice_block_dd">
+                        <dl class="p-postalPrice_block_dd_list_dl">
+                            <dt class="p-postalPrice_block_dd_list_dt">検査項目</dt>
+                            <dd class="p-postalPrice_block_dd_list_dd">${InspectionItem}</dd>
+                        </dl>
+                    </dd>
+                </dl>
+                <div class="p-postalPrice_block_btm">
+                    <ul class="p-postalPrice_block_btm_list">
+                        <li class="p-postalPrice_block_btm_list_item">検査項目：${InspectionItem.length}&nbsp;項目</li>
+                        <li class="p-postalPrice_block_btm_list_item">検査方法：${InspectionMethod}</li>
+                    </ul>
+                </div>
+            </a>`;
+        }).join('');
+        $(".p-lp_menu_list").html(menuHTML);
+    }
+});
+</script>
+
+<style lang="scss">
+.p-lp_menu{
+    background-color: #fff;
+    padding: 65px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_head{
+        text-align: center;
+        &_ttl{
+            font-weight: 600;
+            font-size: 1.45rem;
+            color: var(--color-08);
+        }
+    }
+    &_sort{
+        background-color: #f7f3f0;
+        border-radius: 6px;
+        padding: 15px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &_ttl{
+            text-align: center;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--body-color);
+        }
+        &_nav{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            &_btn{
+                padding: 12px 0;
+                background-color: #fff;
+                flex-grow: 1;
+                border: solid 1px var(--color-04);
+                border-radius: 4px;
+                color: var(--color-04);
+                font-weight: 600;
+                font-size: 1rem;
+                &.-active{
+                    background-color: #5b5b5b;
+                    color: #fff;
+                    border-color: transparent;
+                }
+            }
+        }
+        &_list{
+            background-color: #d6f1ff;
+            border-radius: 6px;
+            overflow: hidden;
+            &_head{
+                background-color: var(--color-08);
+                text-align: center;
+                padding: 10px 0;
+                &_ttl{
+                    font-weight: 600;
+                    color: #fff;
+                }
+            }
+            &_content{
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            &_notes{
+                padding: 6px 0;
+                font-size: .85rem;
+                color: var(--body-color);
+            }
+            &_elm{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            &_item{
+                padding: 12px 0;
+                background-color: #fff;
+                text-align: center;
+                flex-basis: calc(50% - 5px);
+                border: solid 1px var(--color-04);
+                border-radius: 4px;
+                color: var(--color-04);
+                font-weight: 600;
+                font-size: 0.95rem;
+                &.-active{
+                    background-color: #5b5b5b;
+                    color: #fff;
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+    &_notes{
+        padding: 0 0 10px;
+        text-align: center;
+        .c-txt{
+            font-size: .85rem;
+            color: var(--color-08);
+            line-height: 1.5;
+        }
+    }
+    &_list{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+</style>

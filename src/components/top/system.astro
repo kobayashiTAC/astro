@@ -1,0 +1,84 @@
+---
+---
+<section id="system" class="p-lp_system">
+    <div class="l-container">
+        <div class="p-lp_system_head">
+            <h2 class="p-lp_system_head_ttl">高精度検査会のポイント</h2>
+            <span class="p-lp_system_head_spell -bahnschrift">POINTS</span>
+        </div>
+    
+        <div class="c-lp_head -lv3">
+            <h3>高い検査精度の検査機器</h3>
+        </div>
+    
+        <div class="p-lp_system_panther">
+            <div class="p-lp_system_panther_visual">
+                <img src="/img/lp/p-lp_system.png" alt="パンサーシステム">
+            </div>
+            <h4 class="c-lp_min_ttl">
+                <span class="c-lp_min_ttl_middle">公的機関やコロナウイルス検査でも</span>
+                <span class="c-lp_min_ttl_middle">使用されている最新の検査機器</span>
+                <span class="c-lp_min_ttl_large">「パンサーシステム」</span>
+            </h4>
+            <p class="p-lp_system_panther_features">
+                「パンサーシステム」は、遺伝子検査の完全自動化を実現した、全自動の遺伝子解析装置になります。<br><br>
+                提携クリニックではそんな最新の検査機器「パンサーシステム」を採用しており、非常に高い検出性能と検査スピードを実現しております。 また感染症専門の臨床検査技師が対応することでさらなる検査の精度・スピード向上に努めております。<br><br>
+                郵送の検査キットだからと言って検査精度が下がることはございません。ご安心ください。
+            </p>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+.p-lp_system {
+    padding: 20px;
+    background-color: #fff;
+    &_head {
+        margin: 16px 0 0;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        text-align: center;
+        color: var(--color-04);
+        &_ttl {
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+        &_spell {
+            font-size: 3rem;
+            font-weight: 600;
+            border-bottom: solid 3px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+    }
+
+    .c-lp_head {
+        &.-lv3 {
+            margin: 32px 0 0;
+        }
+    }
+
+    .c-lp_min_ttl {
+        margin: 16px 0 0;
+    }
+
+    &_panther {
+        &_visual {
+            position: relative;
+            left: -1vw;
+            width: calc(100% + 2vw);
+            margin: 6px 0 0;
+            img {
+                width: 100%;
+            }
+        }
+        &_features {
+            margin: 1em 0 0;
+            font-size: clamp(16px, 4vw, 24px);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+    }
+}
+</style>

@@ -1,0 +1,121 @@
+---
+---
+<section id="introduction" class="p-lp_introduction">
+    <div class="p-lp_introduction_raised">
+        <div class="p-lp_introduction_raised_head">
+            <svg xmlns="http://www.w3.org/2000/svg" class="p-lp_introduction_raised_head_icon" viewBox="0 0 24 24"><path d="M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM10.9989 16.0002V18.0002H12.9989V16.0002H10.9989ZM10.9989 9.00017V14.0002H12.9989V9.00017H10.9989Z" fill="currentColor"></path></svg>
+            <h2 class="p-lp_introduction_raised_head_ttl"><span class="-marker">性病感染の可能性</span>は<br>ありませんか？</h2>
+        </div>
+        <div class="p-lp_introduction_raised_ttl">
+            <p class="">
+                感染している事に気が付かず、<br>
+                意図せず周りの人にうつしていることも
+            </p>
+        </div>
+        <div class="p-lp_introduction_raised_txt">
+            <p class="c-txt">
+                SNSやマッチングアプリの普及等により、性感染症の感染率は年々増加傾向にあります。<br>
+                性感染症＝性病は放置しても治らず、自然治癒しません。潜伏期間もさまざまで、放置すると体内で進行し、最悪の場合死に至るケースもあるほどです。
+            </p>
+        </div>
+        <div class="p-lp_introduction_raised_transition">
+            <img src="/img/lp/p-lp_introduction_raised_transition.png" alt="感染の機会から数年後" width="685" height="274" />
+        </div>
+    </div>
+    <div class="p-lp_introduction_moreover">
+        <div class="p-lp_introduction_moreover_ttl">キスだけでのどに感染する恐れも…。</div>
+        <div class="p-lp_introduction_moreover_table">
+            <img src="/img/lp/p-lp_introduction_moreover_table.png" alt="性感染症の感染経路" width="698" height="469" />
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    .p-lp_introduction{
+        background-color: #f7f3f0;
+        padding: 40px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &_raised{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            &_head{
+                color: var(--alert-color);
+                text-align: center;
+                &_icon{
+                    width:3rem;
+                }
+                &_ttl{
+                    font-weight: 600;
+                    font-size: 1.65rem;
+                    line-height: 1.25;
+                    padding: 8px 0 5px;
+                    width: fit-content;
+                    margin: 0 auto;
+
+                    .-marker {
+                        background-image: linear-gradient(0deg,#f7ff05 .5em,transparent .5em);
+                    }
+                }
+            }
+            &_ttl{
+                font-weight: 600;
+                text-align: center;
+                line-height: 1.35;
+                font-size: clamp(1.125rem,4vw,1.25rem);
+                color: var(--color-01);
+            }
+            &_txt{
+                .c-txt{
+                    line-height: 1.5;
+                    font-size: .95rem;
+                    font-feature-settings: "palt";
+                    letter-spacing: .5px;
+                }
+            }
+            &_transition{
+                img{
+                    width:100%;
+                    height:auto;
+                    object-fit:contain;
+                }
+            }
+        }
+        &_moreover{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            &_ttl{
+                color: var(--alert-color);
+                font-weight: 600;
+                font-size: 1.25rem;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                &::before,&::after{
+                    content:"";
+                    width: 0;
+                    height: 2rem;
+                    border-right: solid 2px;
+                }
+                &::before{
+                    transform: rotate(-30deg);
+                }
+                &::after{
+                    transform: rotate(30deg);
+                }
+            }
+            &_table{
+                img{
+                    width:100%;
+                    height:auto;
+                    object-fit:contain;
+                }
+            }
+        }
+    }
+</style>

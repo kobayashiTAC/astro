@@ -1,0 +1,83 @@
+---
+interface Props {
+	siteData: string;
+}
+
+const { siteData } = Astro.props;
+const siteUrl = import.meta.env.PUBLIC_URL;
+---
+<footer class="l-footer">
+    <div class="l-container">
+        <div class="l-footer_name">{siteData.name}</div>
+        <dl class="l-footer_contact">
+            <dt class="l-footer_contact_ttl">お問い合わせ：</dt>
+            <dd class="l-footer_contact_txt">
+                <address>{siteData.address}</address>
+            </dd>
+        </dl>
+        <ul class="l-footer_list">
+            <li class="l-footer_list_item">
+                <a href="/" class="l-footer_list_link">TOP</a>
+            </li>
+            <li class="l-footer_list_item">
+                <a href="/privacy/" class="l-footer_list_link">プライバシーポリシー</a>
+            </li>
+            <li class="l-footer_list_item">
+                <a href="/terms/" class="l-footer_list_link">販売利用規約</a>
+            </li>
+            <li class="l-footer_list_item">
+                <a href="/tokusho/" class="l-footer_list_link">特定商取引法</a>
+            </li>
+        </ul>
+    </div>
+    <div class="l-footer_copyright">
+        <div class="l-container">
+            <span class="l-footer_copyright_txt">Copyright {siteData.name}</span>
+        </div>
+    </div>
+</footer>
+
+<style lang="scss">
+.l-footer{
+    background: #6d6d6d;
+    color: #fff;
+    padding: 40px 0 0;
+    &_name{
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    &_contact{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+        &_ttl,&_txt{
+            font-size: .85rem;
+        }
+    }
+    &_list{
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 20px 100px;
+        &_item{}
+        &_link{
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M9%2018l6-6-6-6%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right center;
+            color: #fff;
+            text-decoration: none;
+            border-bottom: solid 1px;
+            display: flex;
+            padding: 20px 0px;
+        }
+    }
+    &_copyright{
+        background-color: var(--color-01);
+        &_txt{
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+    }
+}
+</style>

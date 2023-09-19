@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Fv from '../components/top/fv.astro';
+import Introduction from '../components/top/introduction.astro';
+import Benefit from '../components/top/benefit.astro';
+import Flow from '../components/top/flow.astro';
+import Telemedicine from '../components/top/telemedicine.astro';
+import Menu from '../components/top/menu.astro';
+import Movie from '../components/top/movie.astro';
+import System from '../components/top/system.astro';
+import Supervisor from '../components/top/supervisor.astro';
+import Question from '../components/top/question.astro';
+
+const siteUrl = import.meta.env.PUBLIC_URL;
+---
+
+<Layout title="郵送性病検査">
+	<link slot="canonical" rel="canonical" href={`${siteUrl}`} />
+	<main>
+		<Fv/>
+		<Introduction/>
+		<Benefit/>
+		<Flow/>
+		<Telemedicine/>
+		<Menu/>
+		<Movie/>
+		<System/>
+		<Supervisor/>
+		<Question/>
+		<div class="p-lp_nav">
+			<div class="p-lp_nav_content l-container">
+				<a href="#menu" class="p-lp_nav_btn">検査メニューを選ぶ</a>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style lang="scss">
+main {
+	margin: auto;
+	max-width: 60ch;
+}
+.p-lp{
+	&_nav{
+		position: sticky;
+		bottom: 0;
+		background-color: #fff;
+		z-index: 10;
+		&_content{
+			padding: 10px 20px;
+			display: flex;
+			flex-direction: column;
+		}
+		&_btn{
+			text-decoration: none;
+			background-image: linear-gradient(90deg, rgb(255, 201, 95) 0%, rgb(242, 164, 12) 100%);
+			color: #fff;
+			text-shadow: 0px 0px 1px var(--main1-color);
+			text-align: center;
+			padding: 12px 0 10px;
+			font-size: 1.15rem;
+			font-weight: 600;
+			border-radius: 100px;
+			box-shadow: 0px 1px 4px -1px rgb(25 160 228 / 40%);
+		}
+	}
+}
+</style>

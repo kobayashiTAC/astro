@@ -1,0 +1,295 @@
+@font-face {
+    font-family: 'LINE SEED';
+    src: url('../font/woff2/LINESeedJP_OTF_Rg.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINE SEED';
+    src: url('../font/woff2/LINESeedJP_OTF_Bd.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LINE SEED';
+    src: url('../font/woff2/LINESeedJP_OTF_Eb.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+.c-txt {
+    line-height: 1.5;
+    font-size: 0.95rem;
+    font-feature-settings: "palt";
+    letter-spacing: .05em;
+    color: var(--body-color);
+
+    .c-accent {
+        color: var(--color-07);
+    }
+}
+
+.c-img_full {
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+.c-ttl {
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--body-color);
+    font-feature-settings: "palt";
+    letter-spacing: .5px;
+    line-height: 1.25;
+
+    &.-h3 {
+        font-size: 1.15rem;
+    }
+
+    &.-h4 {
+        font-size: 1.15rem;
+    }
+
+    &.-small,
+    .-small {
+        font-size: 80%;
+        vertical-align: middle;
+    }
+}
+
+.c-list {
+    list-style: circle;
+    padding: 10px 0 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    &_item {
+        line-height: 1.5;
+        font-size: 0.95rem;
+        font-feature-settings: "palt";
+        letter-spacing: 0.5px;
+        color: var(--body-color);
+    }
+
+    .c-list {
+        list-style: disc;
+    }
+}
+
+.c-att {
+    margin: .5em 0 0;
+    padding: 0 0 0 1em;
+    text-indent: -1em;
+    font-size: .8rem;
+    line-height: 1.5;
+}
+
+.c-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+        border: solid 1px #535353;
+        word-break: keep-all;
+        font-size: .95rem;
+        font-weight: 600;
+        color: var(--body-color);
+        padding: 10px 10px;
+    }
+
+    td {
+        border: solid 1px #555;
+        font-size: .95rem;
+        color: var(--body-color);
+        padding: 10px 10px;
+        font-feature-settings: "palt";
+        letter-spacing: .5px;
+    }
+}
+
+.c-pageTop {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    &_link {
+        background-color: var(--color-01);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z' fill='rgba(255,255,255,1)'%3E%3C/path%3E%3C/svg%3E");
+        display: none;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50px;
+        position: absolute;
+        bottom: 75px;
+        right: 20px;
+        background-position: center;
+        background-size: 2.5rem;
+        background-repeat: no-repeat;
+        text-decoration: none;
+    }
+}
+
+.c-head {
+    font-weight: 600;
+    letter-spacing: .05em;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+
+    &_txt {
+        line-height: 1.5;
+        font-size: clamp(1.1rem, 3.5vw, 1.15rem);
+    }
+
+    &_ttl {
+        font-size: 1.65rem;
+        line-height: 1.65;
+        color: var(--color-01);
+
+        .-box {
+            background-color: #fff;
+            display: inline-flex;
+            border: solid 2px;
+            line-height: 1;
+            padding: 6px 8px 5px;
+            margin: 0 5px;
+        }
+
+        .-alert {
+            color: var(--alert-color);
+        }
+
+        &.-add_particle {
+            position: relative;
+            &::before, &::after {
+                position: absolute;
+                bottom: 9%;
+                content: '';
+                width: 2px;
+                height: 1.3em;
+                border-radius: 9999px;
+                display: block;
+            }
+    
+            &::before {
+                left: -5%;
+                transform: rotate(-30deg);
+            }
+    
+            &::after {
+                right: -5%;
+                transform: rotate(30deg);
+            }
+    
+            &.-orange {
+                &::before, &::after {
+                    background: var(--color-01);
+                }
+            }
+        }
+    }
+
+    &_inner {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+
+.c-btn {
+    position: relative;
+    width: 100%;
+    padding: 24px 80px 22px 32px;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-family: 'LINE SEED';
+    letter-spacing: .05em;
+    font-size: clamp(18px,5vw,26px);
+    font-weight: 800;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-shadow: 0 4px 16px 0 #31313138;
+    
+    & + & {
+        margin: .66em 0 0;
+    }
+
+    &.-icon_anker_w {
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY( -45% );
+            width: 1em;
+            height: 1em;
+            background: transparent url(/img/lp/icon-btn_anker_white.png) no-repeat border-box center/contain;
+            display: block;
+        }
+    }
+
+    &.-orange {
+        background: var(--color-01);
+        color: white;
+    }
+
+    &.-red {
+        background: var(--color-09);
+        color: white;
+    }
+
+    &_wrap {
+        flex-direction: column;
+        display: flex;
+    }
+}
+
+
+.c-lp_head {
+    justify-content: center;
+    display: flex;
+    &.-lv3 {
+        h3 {
+            width: calc( 100% - clamp(16px, 10.5vw, 40px) );
+            padding: .5em;
+            border: solid 2px var(--color-04);
+            display: inline-block;
+            text-align: center;
+            color: var(--color-04);
+            font-weight: 500;
+            font-size: clamp(20px,6vw,28px);
+            letter-spacing: .05em;
+        }
+    }
+}
+
+
+.c-lp_min_ttl {
+    margin: 24px 0 0;
+    text-align: center;
+    letter-spacing: .025em;
+    line-height: 1.4;
+    color: var(--color-04);
+    span {
+        display: block;
+    }
+    &_middle {
+        font-size: clamp(16px,5vw,24px);
+    }
+    &_large {
+        font-size: clamp(24px,7vw,36px);
+    }
+}

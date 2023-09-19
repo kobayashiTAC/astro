@@ -1,0 +1,107 @@
+---
+---
+<section id="flow" class="p-lp_flow">
+    <div class="p-lp_flow_head">
+        <h2 class="p-lp_flow_head_ttl">郵送性病検査の流れ</h2>
+        <span class="p-lp_flow_head_spell -bahnschrift">FLOW</span>
+    </div>
+    <ol class="p-lp_flow_step">
+        <li class="p-lp_flow_step_item">
+            <div class="p-lp_flow_step_item_ttl">スマホやPCから<br>検査キットを購入</div>
+            <img src="/img/lp/p-lp_flow_step_item_img-01.png" class="p-lp_flow_step_item_img" alt="検査キットを購入" width="305" height="234" />
+        </li>
+        <li class="p-lp_flow_step_item">
+            <div class="p-lp_flow_step_item_ttl">登録したお届け先<br>に検査キットをお届け
+                </div>
+            <img src="/img/lp/p-lp_flow_step_item_img-02.png" class="p-lp_flow_step_item_img" alt="お届け先に検査キットを配達" width="305" height="234" />
+        </li>
+        <li class="p-lp_flow_step_item">
+            <div class="p-lp_flow_step_item_ttl">ご自身で対象となる<br>検体を採取し、返送</div>
+            <img src="/img/lp/p-lp_flow_step_item_img-03.png" class="p-lp_flow_step_item_img" alt="ご自身で検体を採取・返送" width="305" height="234" />
+        </li>
+        <li class="p-lp_flow_step_item">
+            <div class="p-lp_flow_step_item_ttl">検査結果をスマホや<br>PCから確認</div>
+            <img src="/img/lp/p-lp_flow_step_item_img-04.png" class="p-lp_flow_step_item_img" alt="検査結果をWebで確認" width="305" height="234" />
+        </li>
+    </ol>
+</section>
+
+<style lang="scss">
+.p-lp_flow{
+    background-color: #f7f3f0;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_head{
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        text-align: center;
+        color: var(--color-02);
+        &_ttl{
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+        &_spell{
+            font-size: 3rem;
+            font-weight: 600;
+            border-bottom: solid 3px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+    }
+    &_step{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        counter-reset: number 0;
+        &_item{
+            background-color: var(--color-02);
+            flex-basis: calc(50% - 5px);
+            color: #fff;
+            padding: 8px;
+            position:relative;
+            &:not(:first-child){
+                &:before{
+                    content: "";
+                    position: absolute;
+                    left: -0.85rem;
+                    top: calc(50% - 1rem);
+                    border: solid 1.35rem transparent;
+                    border-left-color: #bad3df;
+                }
+            }
+            &_ttl{
+                position: relative;
+                padding: 0 0 6px clamp(1.2rem, 6vw, 1.85rem);;
+                line-height: 1.35;
+                font-size: clamp(12px, 3.2vw, 1.05rem);
+                &:before{
+                    counter-increment: number 1;
+                    content: counter(number);
+                    background-color: #fff;
+                    color: var(--color-02);
+                    width: clamp(1rem,4.5vw,1.5rem);
+                    height: clamp(1rem,4.5vw,1.5rem);
+                    border-radius: 30px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: clamp(12px, 3.8vw, 1.25rem);;
+                    font-weight: 600;
+                    line-height: 1;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+            }
+            &_img{
+                width:100%;
+                height:auto;
+                object-fit:contain;
+            }
+        }
+    }
+}
+</style>

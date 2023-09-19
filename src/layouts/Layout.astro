@@ -1,0 +1,224 @@
+---
+// TODO::Astroのtransitionを利用する場合
+// import { ViewTransitions } from 'astro:transitions';
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+import '../assets/scss/_reset.scss';
+import '../assets/scss/_component.scss';
+
+const appEnv = import.meta.env.APP_ENV;
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+const name = "高精度検査会";
+const url = "kouseido-kensakai.jp";
+const address = "info@kouseido-kensakai.jp";
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID;
+const gmcId = import.meta.env.PUBLIC_GMC_ID;
+const siteData = {
+	name:"高精度検査会",
+	url:"https://kouseido-kensakai.jp/",
+	address:"info@kouseido-kensakai.jp"
+};
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="業界最安値に挑戦の郵送性病検査。返送はポスト投函だけで、最短翌日にキットが到着。結果はWEB上で確認可能。手軽に、安全に、確実に性病検査を行うためのサービスです。">
+		<title>{title} | {name}</title>
+		<link rel="icon" href="/favicon.png" sizes="any">
+		<link rel="apple-touch-icon" href="/favicon.png">
+		<slot name="canonical" />
+		<!--TODO::Astroのtransitionを利用する場合
+			https://docs.astro.build/en/guides/view-transitions/#built-in-animation-directives
+			<ViewTransitions /> -->
+		{
+			appEnv != "local" && <>
+			<meta name="google-site-verification" content={gmcId} />
+			<script is:inline define:vars={{gtmId}}>
+				(function (w, d, s, l, i) {
+					w[l] = w[l] || [];
+					w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+					var f = d.getElementsByTagName(s)[0],
+						j = d.createElement(s),
+						dl = l != "dataLayer" ? "&l=" + l : "";
+					j.async = true;
+					j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+					f.parentNode.insertBefore(j, f);
+				})(window, document, "script", "dataLayer", gtmId);
+			</script>
+			<!-- End Google Tag Manager -->
+			</>
+		}
+		{
+			appEnv == "prod" && <>
+			<script is:inline type="text/javascript" define:vars={{clarityId}}>
+				(function (c, l, a, r, i, t, y) {
+					c[a] =
+						c[a] ||
+						function () {
+							(c[a].q = c[a].q || []).push(arguments);
+						};
+					t = l.createElement(r);
+					t.async = 1;
+					t.src = "https://www.clarity.ms/tag/" + i;
+					y = l.getElementsByTagName(r)[0];
+					y.parentNode.insertBefore(t, y);
+				})(window, document, "clarity", "script", clarityId);
+			</script>
+			</>
+		}
+	</head>
+	<body id="app">
+		<Header name={name} />
+		<slot />
+		<Footer siteData={siteData} />
+		<div class="l-modal">
+			<div class="l-modal_wraper l-container">
+				<div class="l-modal_close">
+					<svg class="js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#fff"></path></svg>
+				</div>
+				<div class="l-modal_content"></div>
+			</div>
+		</div>
+		<div class="c-pageTop">
+			<a href="#app" class="c-pageTop_link js-pageTop" aria-label="ページ上部へ">&nbsp;</a>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		{
+			appEnv != "local" && <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		}
+	</body>
+</html>
+
+<script>
+let topBtn = $(".js-pageTop");
+topBtn.hide();
+window.addEventListener("load", function() {
+	$(".js-modal-close").on("click",function(){
+		$(".l-modal_content").empty();
+		$(".l-modal").removeClass("-active");
+	});
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			topBtn.fadeIn();
+		} else {
+			topBtn.fadeOut();
+		}
+	});
+});
+</script>
+
+<style lang="scss" is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+		--color-01:#f2a40c;
+		--color-02:#ff7ab2;
+		--color-03:#f7ff05;
+		--color-04:#18a1e7;
+		--color-05:#6CCBFB;
+		--color-06:#000; // add rich black
+		--color-07: #d65151; // add accent red
+		--color-08: #19a0e4;
+		--color-09: #e62c39; // add red
+		--alert-color: #d95354;
+		--body-color: #3a3a3a;
+		--background-color: #f7f3f0;
+	}
+	html {
+		font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+		background-color: #F6F6F6;
+		color: var(--body-colo);
+		font-size: 16px;
+		scroll-behavior: smooth;
+		scroll-padding-top: 80px;
+	}
+	.-bahnschrift{
+		font-family: "Bahnschrift", sans-serif;
+	}
+	.-lineseed{
+		font-family: "LINE SEED", sans-serif;
+	}
+	.l-container{
+		max-width: 60ch;
+		margin: 0 auto;
+	}
+	.l-cont {
+		padding: 20px;
+	}
+	.l-headline{
+		background-color: var(--color-01);
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px 20px;
+		&_ttl{
+			font-feature-settings: "palt";
+			letter-spacing: 1px;
+			font-weight: 600;
+			font-size: 1.35rem;
+		}
+	}
+	.l-section{
+		background-color: #fff;
+		padding: 30px 20px;
+		word-break: break-all;
+		line-height: 1.5;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.l-modal{
+		display: none;
+		position: fixed;
+		width: 100vw;
+		height: 100vh;
+		background-color: rgb(0 0 0 / 50%);
+		backdrop-filter: blur(2px);
+		top: 0;
+		left: 0;
+		z-index: 10;
+		transition: .3s;
+		&.-active{
+			display: block;
+		}
+		&_wraper{
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 20px;
+		}
+		&_content{
+			background-color: #fff;
+			padding: 10px;
+			border-radius: 8px;
+			.p-lp_movie_list_modal{
+				display: block;
+			}
+		}
+		&_close{
+			margin-top: -5rem;
+			text-align: right;
+			svg{
+				width: 3.5rem;
+				height: 3.5rem;
+			}
+		}
+	}
+	main {
+		margin: auto;
+		max-width: 60ch;
+	}
+</style>

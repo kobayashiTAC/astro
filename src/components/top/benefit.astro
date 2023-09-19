@@ -1,0 +1,144 @@
+---
+---
+<section id="benefit" class="p-lp_benefit">
+    <h2 class="c-head">
+        <span class="c-head_txt">高精度検査会の性病検査キットなら</span>
+        <div class="c-head_ttl">
+            <span class="-box">誰にも知られずご自宅</span>で<br>
+            <span class="-alert">簡単に検査</span>出来ます。
+        </div>
+    </h2>
+    <div class="c-img_full">
+        <img src="/img/lp/p-lp_benefit_sample.png" alt="検査キットのイメージ" width="700" height="397" />
+    </div>
+    <ul class="p-lp_benefit_point">
+        <li class="p-lp_benefit_point_item">梱包コストを最小限に抑えて<span class="-alert">低価格</span>を実現。</li>
+        <li class="p-lp_benefit_point_item"><span class="-alert">中身のバレない</span>安心な梱包。</li>
+        <li class="p-lp_benefit_point_item">本日12時までの決済完了で<br><span class="-alert">即日発送</span>。</li>
+        <li class="p-lp_benefit_point_item">検査結果の通知書は<br><span class="-alert">無料ダウンロード</span>が可能。</li>
+        <li class="p-lp_benefit_point_item">スマホ･パソコンから検査結果を<span class="-alert">Webで確認</span>。</li>
+    </ul>
+    <div class="p-lp_benefit_moreover">
+        <div class="p-lp_benefit_moreover_ttl">結果が陽性だったら･･･?
+        </div>
+        <div class="p-lp_benefit_moreover_content">
+            <h3 class="p-lp_benefit_moreover_content_head">
+                <span class="-yellow">治療薬を郵送</span>でお届けできます<br>
+                <span class="-yellow -small">オンライン診療料無料</span>
+            </h3>
+            <div class="p-lp_benefit_moreover_content_img">
+                <img src="/img/lp/p-lp_benefit_moreover_content_img.png" alt="診療のイメージ" width="650" height="397" />
+            </div>
+            <div class="p-lp_benefit_moreover_content_txt">
+                <p class="c-txt">結果が陽性だった場合はオンラインでの診療が可能。さらに、中身が分からない梱包で、ご自宅へと治療薬を郵送します。                </p>
+                <ul class="c-att">
+                    <li>※淋菌（のど）・HIV・梅毒の治療は対象外です</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+.p-lp_benefit{
+    background-color: #f7f3f0;
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_point{
+        display: flex;
+        flex-direction: column;
+        padding: 0px 0 0px;
+        &_item{
+            font-weight: 600;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            position: relative;
+            padding: 15px 0 15px 3rem;
+            border-bottom: dashed 2px var(--color-01);
+            &::before{
+                content: "";
+                background-image: url("/img/lp/p-lp_benefit_point_item.png");
+                background-size: contain;
+                width: 2rem;
+                height: 2rem;
+                display: block;
+                position: absolute;
+                left: 0;
+                top: calc(50% - 1rem);
+            }
+            &:last-child{
+                border-bottom: none;
+            }
+            .-alert{
+                color: var(--alert-color);
+            }
+        }
+    }
+    &_moreover{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        &_ttl{
+            color: var(--alert-color);
+            font-weight: 600;
+            font-size: 1.65rem;
+            letter-spacing: .05em;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            &::before,&::after{
+                content: "";
+                width: 0;
+                height: 2rem;
+                border-right: solid 2px;
+            }
+            &::before{
+                transform: rotate(-30deg);
+            }
+            &::after{
+                transform: rotate(30deg);
+            }
+        }
+        &_content{
+            background-color: var(--color-01);
+            color: #fff;
+            padding: 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            &_head{
+                text-align: center;
+                font-weight: 600;
+                font-size: 1.65rem;
+                line-height: 1;
+                .-yellow{
+                    color: var(--color-03);
+                }
+                .-small{
+                    font-size: 1.25rem;
+                }
+            }
+            &_img{
+                img{
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+            &_txt{
+                .c-txt{
+                    color: #fff;
+                    line-height: 1.5;
+                    font-size: .95rem;
+                    font-feature-settings: "palt";
+                    letter-spacing: .5px;
+                }
+            }
+        }
+    }
+}
+</style>

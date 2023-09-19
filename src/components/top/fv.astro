@@ -1,0 +1,254 @@
+---
+---
+<section id="fv" class="p-lp_fv">
+    <div class="p-lp_fv_inner -lv1">
+        <div class="p-lp_fv_ttl_sub -lineseed">
+            <div class="p-lp_fv_ttl_sub_inner">
+                <span class="p-lp_fv_ttl_sub_inline">スマホで完結</span>
+                <span class="p-lp_fv_ttl_sub_inline">性病検査</span>
+            </div>
+        </div>
+    
+        <div class="p-lp_fv_visual">
+            <div class="p-lp_fv_visual_main -deco01">
+                <div class="p-lp_fv_visual_main_circle">
+                    <img src="/img/lp/p-lp_fv_visual_pt1.png" alt="スマホで完結！性病検査から治療までサポート メディカルポスト">
+                </div>
+            </div>
+        </div>
+    
+        <div class="p-lp_fv_ttl_main -lineseed">
+            <p class="p-lp_fv_ttl_main_en">
+                <i class="p-lp_fv_ttl_main_en_min">ONLINE</i>
+                STD
+            </p>
+            <h1 class="p-lp_fv_ttl_main_ja">オンライン性病検査</h1>
+        </div>
+    
+        <div class="p-lp_fv_price -lineseed">
+            <div class="p-lp_fv_price_inner">
+                <div class="p-lp_fv_price_bubble">最短当日発送＆全国対応可</div>
+                <div class="p-lp_fv_price_kit">
+                    <img src="/img/lp/p-lp_fv_kit.png" alt="検査キットイメージ">
+                </div>
+                <h2 class="p-lp_fv_price_ttl">性病検査キット</h2>
+                <div class="p-lp_fv_price_competitive">
+                    <div class="p-lp_fv_price_competitive_specificity">
+                        <img src="/img/lp/p-lp_fv_price_sens_num.png" alt="">
+                        <i class="p-lp_fv_price_competitive_specificity_att">※陰性と<br>正しく判定される確率</i>
+                    </div>
+                    <div class="p-lp_fv_price_competitive_challenge">
+                        <img src="/img/lp/p-lp_fv_price_num.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="p-lp_fv_catch">
+            <img src="/img/lp/p-lp_fv_catch.png" alt="自社で検査が簡潔するから高精度検査×迅速結果通知">
+        </div>
+    </div>
+
+    <div class="p-lp_fv_inner -lv2">
+        <div class="c-btn_wrap p-lp_fv_root">
+            <a href="#menu" class="c-btn -orange -icon_anker_w">検査キットをお探しの方</a>
+            <a href="#telemedicine" class="c-btn -red -icon_anker_w">治療薬をお探しの方</a>
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+.p-lp_fv {
+    position: relative;
+    user-select: none;
+    &_inner {
+        &.-lv1 {
+            background: transparent url(/img/lp/p-lp_fv_bg.png) no-repeat border-box top/cover;
+        }
+    }
+
+    &_visual {
+        padding: clamp(40px,9.6vw,56px) 0 0;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        &_main {
+            position: relative;
+            &.-deco01 {
+                &::before {
+                    position: absolute;
+                    right: -5px;
+                    bottom: -18px;
+                    content: '';
+                    width: clamp(85px,22vw,114px);
+                    height: clamp(101px,25vw,135px);
+                    background: transparent url(/img/lp/p-lp_fv_visual_pt2.png) no-repeat border-box center/contain;
+                    display: block;
+                    z-index: 3;
+                }
+            }
+
+            &_circle {
+                width: clamp(240px,60vw,320px);
+                height: clamp(240px,60vw,320px);
+                border-radius: 50%;
+                background: #f0e9e0;
+                overflow: hidden;
+                z-index: 2;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+
+    &_ttl_main {
+        margin: clamp(27px,6.1vw,32px) 0 .1em -.05em;
+        line-height: 1;
+        color: white;
+        &_en {
+            letter-spacing: .03em;
+            font-size: clamp(52px,16vw,84px);
+            text-align: center;
+            font-weight: 800;
+            &_min {
+                margin: 0 0 clamp(0px,1vw,2px);
+                font-size: clamp(24px,7vw,37px);
+                display: block;
+            }
+        }
+        &_ja {
+            text-align: center;
+            letter-spacing: .075em;
+            margin: .12em 0 0;
+            font-size: clamp(16px, 5.3vw, 28px);
+            font-weight: 300;
+            display: block;
+        }
+    }
+
+    &_ttl_sub {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: clamp(20px,7vw,40px) 0 0;
+        padding: 0 clamp(20px,7vw,40px);
+        z-index: 1;
+        &_inner {
+            flex-direction: column;
+            align-items: flex-start;
+            display: flex;
+        }
+        &_inline {
+            font-size: clamp(20px,5.6vw,28px);
+            font-weight: 800;
+            letter-spacing: .1em;
+            line-height: 1;
+            color: #005455;
+            margin: 0 0 .48em;
+            padding: .56em .64em .48em;
+            display: inline-block;
+            background: white;
+        }
+    }
+
+    &_price {
+        margin: clamp(57px,13.1vw,70px) 0 0;
+        padding: 0 clamp(20px,7vw,40px);
+        &_inner {
+            position: relative;
+            border-radius: 8px;
+            background: white;
+            border-radius: 8px;
+            padding: clamp(25px,4vw,28px) clamp(12px,5.6vw,27px) clamp(20px,4vw,22px) clamp(10px,4.2vw,23px);
+        }
+
+        &_ttl {
+            padding: 0 0px 0 0;
+            font-size: clamp(20px,5vw,26px);
+            font-weight: 800;
+            letter-spacing: .075em;
+            text-align: center;
+        }
+
+        &_bubble {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            transform: translateY(-72%);
+            padding: 16px 28px 14px;
+            background: #000;
+            border-radius: 9999px;
+            letter-spacing: .1em;
+            font-size: clamp(16px,4vw,21px);
+            color: white;
+            &::after {
+                position: absolute;
+                top: 63%;
+                left: 13%;
+                content: '';
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+                background: transparent url(/img/lp/p-lp_bubble_black.png) no-repeat border-box center/contain;
+                display: block;
+                z-index: -1;
+            }
+        }
+
+        &_kit {
+            position: absolute;
+            right: clamp(-14px,0vw,-20px);
+            bottom: 100%;
+            transform: translateY(clamp(59px,20vw,74px));
+            width: clamp(20px,21vw,108px);
+            img {
+                width: 100%;
+            }
+        }
+
+        &_competitive {
+            margin: 12px 0 0;
+            gap: 12px;
+            display: flex;
+            img {
+                width: 100%;
+            }
+            &_specificity {
+                flex-basis: 34%;
+                &_att {
+                    margin: 13px 0 0;
+                    display: block;
+                    text-align: center;
+                    font-size: clamp(9px,2.5vw,13px);
+                    white-space: nowrap;
+                    line-height: 1.25;
+                    color: #000;
+                }
+            }
+            &_challenge {
+                flex-basis: 66%;
+            }
+        }
+    }
+
+    &_catch {
+        width: 70%;
+        margin: 0 auto;
+        padding: 24px 0 16px;
+        img {
+            width: 100%;
+        }
+    }
+
+    &_root {
+        width: 100%;
+        max-width: calc( 100% - 40px );
+        padding: 40px 0 0;
+        margin: 0 auto;
+        background: #f7f3f0;
+    }
+}
+</style>

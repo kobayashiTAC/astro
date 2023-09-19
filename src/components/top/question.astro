@@ -1,0 +1,100 @@
+---
+const questions = [
+	{
+        question: "検体を採取するのはいつがいいですか？",
+        answer: "基本的に、キットがお手元に届いたら、いつ採取していただいても構いません。採取する時間が原因で、検査結果が変わることがないからです。ご都合のよい時に、採取を行ってください。ただし、性病には潜伏期間があり、それを経過していないと正しい結果が得られないケースがあります。<br>※女性の方は、月経（生理）が終わってから、膣ぬぐい検査を行うようにしてください"
+    },{
+        question: "送料はいくらですか？記載されている料金以外にお金がかかりますか？",
+        answer: "いいえ、検査メニューに記載の価格が全てです。検査キットの価格には、検査料・返送時の郵送料など、検査結果をご覧いただくまでの全ての料金が含まれています。"
+    },{
+        question: "検査結果の確認方法を教えてください。",
+        answer: '提携クリニックのWebサイト「<a href="https://mypage.medical-post.jp/" target="_blank">検査結果マイページ</a>」よりご確認いただけます。パソコン、スマートフォン、携帯などの各端末から確認ください。'
+    },{
+        question: "症状があるのですが、どの検査を受ければいいですか？",
+        answer: "まずは、どの項目が陽性なのか確認するために「7項目：フルセット」で検査をすることをおすすめいたします。性病は同時に複数のウイルス・菌に感染しているケースもあるため、フルセットで不安要素を解消するのがベストです。" 
+    }
+];
+---
+<section id="question" class="p-lp_question">
+    <h2 class="p-lp_question_ttl">よくあるご質問</h2>
+    <ul class="p-lp_question_list">
+        {
+            questions.map((question) => (
+                <li class="p-lp_question_list_item">
+                    <dl class="p-lp_question_list_item_wraper -active">
+                        <dt class="p-lp_question_list_item_ttl js-dl-accordion">Q.&nbsp;{question.question}</dt>
+                        <dd class="p-lp_question_list_item_txt">
+                            <p class="c-txt" set:html={question.answer} />
+                        </dd>
+                    </dl>
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<script>
+$(document).ready(function() {
+    $(".js-dl-accordion").on("click", function () {
+        console.log("tesst");
+        $(this).next("dd").toggleClass("-active").slideToggle();
+        $(this).parent("dl").toggleClass("-active");
+    });
+});
+</script>
+
+<style lang="scss">
+.p-lp_question{
+    background: #fff7e9;
+    color: var(--body-color);
+    padding: 50px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &_ttl{
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.5rem;
+    }
+    &_list{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        &_item{
+            background: #fff;
+            overflow: hidden;
+            box-shadow: 0px 2px 5px -1px rgb(0 0 0 / 10%);
+            &_wraper{
+                &.-active{
+                    .p-lp_question_list_item_ttl{
+                        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23037ea2%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cline%20x1%3D%225%22%20y1%3D%2212%22%20x2%3D%2219%22%20y2%3D%2212%22%3E%3C%2Fline%3E%3C%2Fsvg%3E");
+                    }
+                }
+            }
+            &_ttl{
+                padding: 15px 40px 15px calc(20px + 1.5rem);
+                font-size: 1.0rem;
+                font-weight: 600;
+                line-height: 1.45;
+                text-indent: -1.3rem;
+                background-image:url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23037ea2%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cline%20x1%3D%2212%22%20y1%3D%225%22%20x2%3D%2212%22%20y2%3D%2219%22%3E%3C%2Fline%3E%3Cline%20x1%3D%225%22%20y1%3D%2212%22%20x2%3D%2219%22%20y2%3D%2212%22%3E%3C%2Fline%3E%3C%2Fsvg%3E");
+                background-repeat: no-repeat;
+                background-position: center right 10px;
+            }
+            &_txt{
+                border-top: solid 1px #f0f0f0;
+                padding: 10px 20px;
+                line-height: 1.5;
+                color:var(--body-color);
+                .c-txt{
+                    color: var(--body-color);
+                    font-size: .9rem;
+                    font-feature-settings: "palt";
+                    letter-spacing: .5px;
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}
+</style>
